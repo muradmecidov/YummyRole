@@ -1,0 +1,55 @@
+﻿@model List<Category>
+<section id="menu" class="menu">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2>Our Menu</h2>
+            <p>Check Our <span>Yummy Menu</span></p>
+        </div>
+
+        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            @foreach (Category category in Model)
+            {
+
+                        <li class="nav-item">
+                            <a class="nav-link @(category.IsActive?"active":"") show" data-bs-toggle="tab" data-bs-target="#menu-@category.Name">
+                                <h4>@category.Name</h4>
+                            </a>
+                        </li>
+
+                        <!-- End tab nav item -->
+            }
+
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+            @foreach (Category category1 in Model)
+            {
+                        <div class="tab-pane fade @(category1.IsActive?"active":"") show" id="menu-@category1.Name">
+                            <div class="tab-header text-center">
+                                <p>Menu</p>
+                                <h3>@category1.Name</h3>
+                            </div>
+
+                    
+                                        <div class="row gy-5">
+                            @foreach (Product item in category1.Products)
+                            {
+                                                        <div class="col-lg-4 menu-item">
+                                                            <a href="/assets/img/menu/menu-item-1.png" class="glightbox"><img src="/assets/img/menu/@item.ImagePath" class="menu-img img-fluid" alt=""></a>
+                                                            <h4>@item.Name</h4>
+                                                            <p class="ingredients">
+                                                                @item.Ingredients
+                                                            </p>
+                                                            <p class="price">
+                                                               $@item.Price
+                                                            </p>
+                                                        </div>
+                            }
+                                        </div>
+                    
+                            </div>
+            }           </div>
+  </div>
+  </section>
